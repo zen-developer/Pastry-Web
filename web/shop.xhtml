@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="contenu">
+                <div class="cols-a">
+                    <div>
+                        <div class="slider-b">
+                            <h2>Our special products:</h2>
+                            <div>
+                                <div class="news-d">
+                                    <p:dataGrid var="cake" value="#{cakeBean.listCakes}" columns="1" rows="3" paginator="true" styleClass="ui-datagrid-no-border" >
+                                        <p:column>
+                                            <article>
+                                                <figure><p:graphicImage value="resources/temp/placeholder-k.png" alt="Placeholder" width="280" height="180"/></figure>
+                                                <h3><h:outputText value="#{cake.name}" /></h3>
+                                                <p><h:outputText value="#{cake.description}" /></p>
+                                                <p class="price"><h:outputText value="#{cake.price}" /></p>
+                                                <p class="link-b"><a href="./">add to cart</a></p>
+                                            </article>
+
+                                        </p:column>
+                                    </p:dataGrid>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <aside>
+                        <h3>My cart</h3>
+                        <ul class="list-c">
+                            <li><a href="./">10 X Strowberie Cupcake <span>price: 10,00</span></a></li>
+                            <li><a href="./">10 X Strowberie Cupcake <span>price: 10,00</span></a></li>
+                            <li><a href="./">10 X Strowberie Cupcake <span>price: 10,00</span></a></li>
+                            <li><a href="./">10 X Strowberie Cupcake <span>price: 10,00</span></a></li>
+                            <li class="a">Total: <span>20,50</span></li>
+                        </ul>
+                        <p class="link-b"><a href="./">Check Out</a></p>
+                        <h3>Featured Products:</h3>
+                        <ul class="list-d">
+                            <li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j.png" alt="Placeholder" width="79" height="47"/></a></li>
+                            <li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j-1.png" alt="Placeholder" width="79" height="47"/></a></li>
+                            <li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j.png" alt="Placeholder" width="79" height="47"/></a></li>
+                        </ul>
+                    </aside>
+                </div>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

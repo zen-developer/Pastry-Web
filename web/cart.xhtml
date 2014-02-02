@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="contenu">
+                <div class="cols-a">
+                    <h:form> 
+
+                        <fieldset>
+                            <h2 class="header-b">Home / Shop / My Cart</h2>
+
+                            <p:dataTable var="cake" value="#{cartBean.cakeList}">
+                                <p:column styleClass="close">
+                                    <f:facet name="header" >
+                                        <h:outputText value="Delete" />
+                                    </f:facet>
+                                    <h:outputLink>delete</h:outputLink>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Image" />
+                                    </f:facet>
+                                    <p:graphicImage value="resources/temp/placeholder-m.png" alt="Placeholder" width="62" height="40"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Name" />
+                                    </f:facet>
+                                    <h:outputText value="#{cake.name}" />
+                                </p:column>
+
+                                <p:column styleClass="price">
+                                    <f:facet name="header" >
+                                        <h:outputText value="Price" />
+                                    </f:facet>
+                                    <h:outputText value="#{cake.price}" />
+                                </p:column>
+
+
+                                <p:column >
+                                   <f:facet name="header">
+                                        <h:outputText value="Quantity" />
+                                    </f:facet>
+                                    <h:inputText id="ajaxQuantity" value="#{cake.quantity}" maxlength="3" >
+                                        <f:ajax event="keyup" execute="ajaxQuantity" render="ajaxTotal"/>
+                                    </h:inputText>
+                                </p:column>
+
+                                <p:column styleClass="price">
+                                    <f:facet name="header" >
+                                        <h:outputText value="Total" />
+                                    </f:facet>
+                                    <h:outputText id="ajaxTotal" value="#{cake.quantity*cake.price}" />
+                                </p:column>
+                            </p:dataTable>
+                            <table class="table-c">
+                                <tr>
+                                    <th scope="row">Cart Subtotal:</th>
+                                    <td class="price">20,50</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Shipping:</th>
+                                    <td class="price">2,00</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Total:</th>
+                                    <td class="price">22.50</td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </h:form>
+                        <aside>
+                            <h3>Featured Products:</h3>
+                            <ul class="list-d">
+                                <li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j-1.png" alt="Placeholder" width="79" height="47"/></a></li>
+                                <li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j.png" alt="Placeholder" width="79" height="47"/></a></li>
+                                <li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j-1.png" alt="Placeholder" width="79" height="47"/></a></li>
+                            </ul>
+                        </aside>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

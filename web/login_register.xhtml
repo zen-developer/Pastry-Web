@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./Template.xhtml">
+
+            <ui:define name="contenu">
+                <!-- Content area start TEST-->
+				<div class="cols-a">
+					<div>
+						<h3>Accueil / Mon Compte / Connexion et Inscription</h3>
+						<div class="triple-a">
+                                                    
+                                                    <c:if test="#{!customerBean.isAuth}">
+                                                    
+                                                        <h:form styleClass="form-b" id="loginForm">
+                                                            <fieldset>
+                                                                            <legend>Connexion:</legend>
+                                                                            <p>
+                                                                                    <label for="Email">Email</label>
+                                                                                    <h:inputText value="#{customerBean.client.email}" id="Email" styleClass="required" required="true">
+                                                                                        <f:validateLength maximum="32" minimum="6"/>
+
+                                                                                    </h:inputText>
+                                                                                    <h:message for="Email"></h:message>
+                                                                            </p>
+                                                                            <p>
+                                                                                    <label for="Password">Password</label>
+                                                                                    <h:inputSecret value="#{customerBean.client.password}" id="Password" styleClass="required" required="true"></h:inputSecret>
+                                                                                    <h:message for="Password"></h:message>
+                                                                            </p>
+                                                                            <p class="submit">
+                                                                                <h:commandButton action="#{customerBean.login()}" value="Se Connecter"></h:commandButton>
+                                                                                <a href="#">Mot de passe oublié</a>
+                                                                            </p>
+                                                            </fieldset>
+                                                        </h:form>
+
+                                                        <h:form styleClass="form-b" id="regForm">
+                                                                    <fieldset>
+                                                                            <legend>Inscription</legend>
+                                                                            <p>
+                                                                                    <label for="Nom">Nom</label>
+                                                                                    <h:inputText value="#{customerBean.client.nom}" id="Nom" styleClass="required" required="true">
+                                                                                           <f:validateLength maximum="32" minimum="3"/>
+                                                                                    </h:inputText>
+                                                                                    <h:message for="Nom"></h:message>
+                                                                            </p>
+                                                                               <p>
+                                                                                    <label for="Prenom">Prénom</label>
+                                                                                    <h:inputText value="#{customerBean.client.prenom}" id="Prenom" styleClass="required" required="true">
+                                                                                        <f:validateLength maximum="32" minimum="3"/>
+                                                                                    </h:inputText>
+                                                                                    <h:message for="Prenom"></h:message>
+                                                                            </p>
+                                                                            <p>
+                                                                                    <label for="Email">Email</label>
+                                                                                    <h:inputText value="#{customerBean.client.email}" id="Email" styleClass="required" required="true">
+                                                                                        <f:validateLength maximum="32" minimum="6"/>
+                                                                                    </h:inputText>
+                                                                                    <h:message for="Email"></h:message>
+                                                                            </p>
+                                                                            <p>
+                                                                                    <label for="Passwords">Password</label>
+                                                                                    <h:inputSecret value="#{customerBean.client.password}" id="Password" styleClass="required" required="true">
+                                                                                        <f:validateLength maximum="32" minimum="6"/>
+                                                                                    </h:inputSecret>
+                                                                                    <h:message for="Password"></h:message>
+                                                                            </p>
+                                                                            <p>
+                                                                                    <label for="Password_Verification">Password Verification</label>
+                                                                                    <h:inputSecret value="#{customerBean.password_verif}" id="Password_Verification" styleClass="required" required="true">
+                                                                                        <f:validateLength maximum="32" minimum="6"/>
+                                                                                    </h:inputSecret>
+                                                                                    <h:message for="Password_Verification"></h:message>
+                                                                            </p>
+
+                                                                            <p class="submit">
+                                                                                <h:commandButton action="#{customerBean.register()}" value="S'inscrire"></h:commandButton>
+                                                                            </p>
+                                                                    </fieldset>
+                                                    </h:form>
+                                                </c:if>
+                                                    <c:if test="#{customerBean.isAuth}">
+                                                        <p>Welcome <h:outputText value="#{customerBean.client.email}"></h:outputText></p>
+                                                    </c:if>
+						</div>
+					</div>
+					<aside>
+						<h3>Featured Products:</h3>
+						<ul class="list-d">
+							<li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j.png" alt="Placeholder" width="79" height="47"/></a></li>
+							<li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j-1.png" alt="Placeholder" width="79" height="47"/></a></li>
+							<li><a href="./">Little Strowberie Cupcake <span>price: 1,00</span> <img src="resources/temp/placeholder-j.png" alt="Placeholder" width="79" height="47"/></a></li>
+						</ul>
+					</aside>
+				</div>
+			<!-- Content area end -->
+                <footer id="logo">
+                    <h2>Some of our happy clients:</h2>
+                    <ul>
+                        <li><a href="./" rel="external"><img src="resources/images/logo/a.png" alt="Logo" width="162" height="129"/></a></li>
+                        <li><a href="./" rel="external"><img src="resources/images/logo/a.png" alt="Logo" width="162" height="129"/></a></li>
+                        <li><a href="./" rel="external"><img src="resources/images/logo/a.png" alt="Logo" width="162" height="129"/></a></li>
+                        <li><a href="./" rel="external"><img src="resources/images/logo/a.png" alt="Logo" width="162" height="129"/></a></li>
+                        <li><a href="./" rel="external"><img src="resources/images/logo/a.png" alt="Logo" width="162" height="129"/></a></li>
+                    </ul>
+                </footer>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

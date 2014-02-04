@@ -7,7 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-
         <ui:composition template="./Template.xhtml">
 
             <ui:define name="contenu">
@@ -17,12 +16,14 @@
                         <fieldset>
                             <h2 class="header-b">Home / Shop / My Cart</h2>
 
-                            <p:dataTable var="cake" value="#{cartBean.panier}">
+                            <p:dataTable var="cake" value="#{cartBean.panier}" id="panier">
                                 <p:column styleClass="close">
                                     <f:facet name="header" >
                                         <h:outputText value="Delete" />
                                     </f:facet>
-                                    <h:outputLink>delete</h:outputLink>
+                                    <h:commandButton value="Delete" action="#{cartBean.removeFomCart(cake)}">
+                                        <f:ajax  execute="@this" render="panier"/>
+                                    </h:commandButton>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
@@ -68,6 +69,8 @@
                                     <h:outputText id="ajaxTotal" value="#{cake.quantite*cake.prix}" />
                                 </p:column>
                             </p:dataTable>
+                            <h:commandButton value="Validate" action="#{cartBean.validateCart()}"/>
+
                             <table class="table-c">
                                 <tr>
                                     <th scope="row">Cart Subtotal:</th>

@@ -72,6 +72,8 @@ public class CartBean {
         for(Produit p : panier){
             LigneCommande lc=new LigneCommande();
             lc.setIdProduit(p);
+            lc.setQte(1);
+            lc.setIdCommade(commande);
             lignesCommande.add(lc);
         }
         commande.setLigneCommandeCollection(lignesCommande);
@@ -98,5 +100,7 @@ public class CartBean {
         this.panier = panier;
     }
 
-   
+   public void removeFomCart(Produit p){
+       panier.remove(p);
+   }
 }

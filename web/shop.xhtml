@@ -31,7 +31,7 @@
                                                     <p class="price"><h:outputText value="#{cake.prix}" /></p>
                                                     <p class="link-a">
                                                         <h:form>
-                                                            <h:commandButton styleClass="link-b" value="Add to cart" action="#{cartBean.addToCart(cake)}" onclick="PF('dlg3').show();">
+                                                            <h:commandButton styleClass="link-b" value="Add to cart" action="#{cartBean.addToCart(cake)}" >
                                                                 <f:ajax  execute="@this"/>
                                                             </h:commandButton>
                                                         </h:form>

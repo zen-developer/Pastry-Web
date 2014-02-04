@@ -7,23 +7,17 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="contenu">
-
+        
         <h:form id="form">  
 
-            <p:dataGrid var="cake" value="#{cakeBean.listCakes}" columns="3"  
-                        rows="9" paginator="true"  
+            <p:dataGrid var="cake" value="#{cakeBean.listCakes}" columns="3"  rows="6" paginator="true"  
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-                        rowsPerPageTemplate="9,12,15">  
-                <ul class="gallery-a">
-
-                    <p:panel header="#{cake.nomProduit}" style="text-align:center">  
-                        <h:panelGrid columns="1" style="width:100%">  
-                            <li>
-                                <p:graphicImage value="resources/cakes/#{cake.image}.jpg" alt="Placeholder" width="252" height="161"/>    
-                            </li>
-                        </h:panelGrid>  
-                    </p:panel>  
-                </ul>
+                        rowsPerPageTemplate="9,6">  
+                <p:panel  style="text-align:center" > 
+                    <h3 class="link-a"><h:outputText value="#{cake.nomProduit}" /></h3>
+                    <p:graphicImage value="resources/cakes/#{cake.image}.jpg" alt="Placeholder" width="252" height="161"/>             
+                 </p:panel>  
+                
             </p:dataGrid>  
         </h:form>  
 

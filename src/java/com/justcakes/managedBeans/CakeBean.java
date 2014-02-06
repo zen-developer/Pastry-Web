@@ -3,7 +3,9 @@ package com.justcakes.managedBeans;
 
 import DAO.ProduitFacadeRemote;
 import entities.Produit;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +27,7 @@ Properties prop;
 Context ctx ;
 ProduitFacadeRemote pfr;
     private Collection<Produit> listCakes;
+    private List<CartItem> listCartItem=new ArrayList<CartItem>();
     public CakeBean() {
     }
     @PostConstruct
@@ -35,6 +38,12 @@ ProduitFacadeRemote pfr;
         Context ctx = new InitialContext(prop);
         pfr=(ProduitFacadeRemote) ctx.lookup("java:global/Pastry-EJB/ProduitFacade!DAO.ProduitFacadeRemote");
         listCakes=pfr.findAllProduits();
+        for(Produit p: listCakes){
+            CartItem c=new CartItem();
+            c.setProduit(p);
+            c.setQuantite(1);
+            listCartItem.add(c);
+        }
     } catch (NamingException ex) {
         Logger.getLogger(CakeBean.class.getName()).log(Level.SEVERE, null, ex);
     }
@@ -58,6 +67,14 @@ ProduitFacadeRemote pfr;
 
     public void setListCakes(Collection<Produit> listCakes) {
         this.listCakes = listCakes;
+    }
+
+    public List<CartItem> getListCartItem() {
+        return listCartItem;
+    }
+
+    public void setListCartItem(List<CartItem> listCartItem) {
+        this.listCartItem = listCartItem;
     }
     
     

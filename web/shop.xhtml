@@ -20,20 +20,25 @@
                                     <h:form>
 
 
-                                        <p:dataGrid var="cake" value="#{cakeBean.listCakes}" columns="1" rows="3" paginator="true" 
+                                        <p:dataGrid var="cake" value="#{cakeBean.listCartItem}" columns="1" rows="3" paginator="true" 
                                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                                     styleClass="ui-datagrid-no-border" >
                                             <p:column>
                                                 <article>
-                                                    <figure><p:graphicImage value="resources/cakes/#{cake.image}.jpg" alt="Placeholder" width="280" height="180"/></figure>
-                                                    <h3><h:outputText value="#{cake.nomProduit}" /></h3>
-                                                    <p><h:outputText value="#{cake.description}" /></p>
-                                                    <p class="price"><h:outputText value="#{cake.prix}" /></p>
+                                                    <figure><p:graphicImage value="resources/cakes/#{cake.produit.image}.jpg" alt="Placeholder" width="280" height="180"/></figure>
+                                                    <h3><h:outputText value="#{cake.produit.nomProduit}" /></h3>
+                                                    <p><h:outputText value="#{cake.produit.description}" /></p>
+                                                    <p class="price"><h:outputText value="#{cake.produit.prix}" /></p>
                                                     <p class="link-a">
                                                         <h:form>
-                                                            <h:commandButton styleClass="link-b" value="Add to cart" action="#{cartBean.addToCart(cake)}" >
-                                                                <f:ajax  execute="@this"/>
+                                                            <h:commandButton styleClass="link-b" value="Add to cart" action="#{cartBean.addToCart(cake)}" onclick="confirmation.show()" >
+                                                                <f:ajax  execute="@this" render="@none"/>
+                                                                <p:dialog  id="basicDialog"  showEffect="fade" hideEffect="explode" header="Cart notification" widgetVar="confirmation" modal="false" height="100" width="300">  
+                                                                    <h:outputText value="The cake was added to your cart." />  
+                                                                </p:dialog> 
                                                             </h:commandButton>
+
+
                                                         </h:form>
                                                     </p>
                                                 </article>

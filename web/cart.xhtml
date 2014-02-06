@@ -29,20 +29,20 @@
                                     <f:facet name="header">
                                         <h:outputText value="Image" />
                                     </f:facet>
-                                    <p:graphicImage value="resources/cakes/#{cake.image}.jpg" alt="Placeholder" width="62" height="40"/>
+                                    <p:graphicImage value="resources/cakes/#{cake.produit.image}.jpg" alt="Placeholder" width="62" height="40"/>
                                 </p:column>
                                 <p:column>
                                     <f:facet name="header">
                                         <h:outputText value="Name" />
                                     </f:facet>
-                                    <h:outputText value="#{cake.nomProduit}" />
+                                    <h:outputText value="#{cake.produit.nomProduit}" />
                                 </p:column>
 
                                 <p:column styleClass="price">
                                     <f:facet name="header" >
                                         <h:outputText value="Price" />
                                     </f:facet>
-                                    <h:outputText value="#{cake.prix}" />
+                                    <h:outputText value="#{cake.produit.prix}" />
                                 </p:column>
 
 
@@ -53,41 +53,19 @@
                                     <p:spinner id="ajaxspinner" value="#{cake.quantite}" min="0" max="999" size="3" maxlength="3">  
                                         <p:ajax update="ajaxTotal" process="@this" />  
                                     </p:spinner>
-                                    
-
-<!--<h:inputText id="ajaxQuantity" value="#{cake.quantite}" maxlength="3" >
-    <f:ajax event="keyup" execute="ajaxQuantity" render="ajaxTotal"/>
-</h:inputText>-->
-
-
                                 </p:column>
 
                                 <p:column styleClass="price">
                                     <f:facet name="header" >
                                         <h:outputText value="Total" />
                                     </f:facet>
-                                    <h:outputText id="ajaxTotal" value="#{cake.quantite*cake.prix}" />
+                                    <h:outputText id="ajaxTotal" value="#{cake.quantite*cake.produit.prix}" />
                                 </p:column>
                             </p:dataTable>
-                            <h:commandButton value="Validate" action="#{cartBean.validateCart()}"/>
+                            <p class="submit">
+                                <h:commandButton  value="Validate" action="#{cartBean.validateCart()}"/>
+                            </p>
 
-                            <table class="table-c">
-                                <tr>
-                                    <th scope="row">Cart Subtotal:</th>
-                                    <td class="price">20,50</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Shipping:</th>
-                                    <td class="price">2,00</td>
-                                </tr>
-                                <tr >
-                                   
-                                    <td  class="link-a" colspan="2">
-				<a href="./">Update products</a>
-										
-									</td>
-                                </tr>
-                            </table>
                         </fieldset>
                     </h:form>
                     <aside>

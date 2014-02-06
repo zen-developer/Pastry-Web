@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://serv/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://serv/">
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="valideCarte" type="tns:valideCarte"/>
+
+<xs:element name="valideCarteResponse" type="tns:valideCarteResponse"/>
+
+<xs:element name="verifSolde" type="tns:verifSolde"/>
+
+<xs:element name="verifSoldeResponse" type="tns:verifSoldeResponse"/>
+
+<xs:complexType name="valideCarte">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="valideCarteResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:validation" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="validation">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+<xs:element name="valide" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="verifSolde">
+<xs:sequence>
+<xs:element name="montant" type="xs:float"/>
+<xs:element name="num" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="verifSoldeResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

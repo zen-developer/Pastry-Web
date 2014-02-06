@@ -13,7 +13,6 @@ import entities.Commande;
 import entities.LigneCommande;
 import entities.Produit;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -21,15 +20,14 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.xml.ws.WebServiceRef;
+import serv.Exception_Exception;
+import serv.MyBankserv_Service;
 
 /**
  *
@@ -38,6 +36,8 @@ import javax.naming.NamingException;
 @ManagedBean
 @SessionScoped
 public class CartBean {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/Banque-WebService/MyBankserv.wsdl")
+    private MyBankserv_Service service;
 
     Properties prop;
     Context ctx;
@@ -46,7 +46,8 @@ public class CartBean {
     LigneCommandeFacadeRemote ligneCommandeRemote;
     UserFacadeRemote userRemote;
     private Collection<Produit> listCakes;
-    private List<Produit> panier=new ArrayList<Produit>();;
+    private List<CartItem> panier=new ArrayList<CartItem>();
+    private double prixTotal=0;
     @PostConstruct
     public void init(){
         try {
@@ -69,10 +70,10 @@ public class CartBean {
         commande.setEtat("en cours");
         commande.setDate(new Date());
         Collection<LigneCommande> lignesCommande=new ArrayList<>();
-        for(Produit p : panier){
+        for(CartItem ci : panier){
             LigneCommande lc=new LigneCommande();
-            lc.setIdProduit(p);
-            lc.setQte(1);
+            lc.setIdProduit(ci.getProduit());
+            lc.setQte(ci.getQuantite());
             lc.setIdCommade(commande);
             lignesCommande.add(lc);
         }
@@ -81,8 +82,8 @@ public class CartBean {
     }
     public CartBean() {
     }
-    public void addToCart(Produit produit){
-        panier.add(produit);
+    public void addToCart(CartItem cartItem){
+        panier.add(cartItem);
     }
     public Collection<Produit> getListCakes() {
         return listCakes;
@@ -92,15 +93,39 @@ public class CartBean {
         this.listCakes = listCakes;
     }
 
-    public List<Produit> getPanier() {
+    public List<CartItem> getPanier() {
         return panier;
     }
 
-    public void setPanier(List<Produit> panier) {
+    public void setPanier(List<CartItem> panier) {
         this.panier = panier;
     }
 
-   public void removeFomCart(Produit p){
+    public double getPrixTotal() {
+        return prixTotal;
+    }
+
+    public void setPrixTotal(double prixTotal) {
+        this.prixTotal = prixTotal;
+    }
+    
+    public void addToPrixTotal(double prix){
+        this.prixTotal=this.prixTotal+prix;
+    }
+   
+
+   public void removeFomCart(CartItem p){
+       this.prixTotal=this.prixTotal-p.getQuantite()*p.getProduit().getPrix();
        panier.remove(p);
    }
+
+    private String verifSolde(float montant, int num) throws Exception_Exception {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        serv.MyBankserv port = service.getMyBankservPort();
+        return port.verifSolde(montant, num);
+    }
+   
+   
+   
 }

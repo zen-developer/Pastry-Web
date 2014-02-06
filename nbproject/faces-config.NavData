@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
-    <Scope Scope="Project"/>
+    <Scope Scope="Project">
+        <Node id="resources/blog.html" x="650" y="450" zoom="true"/>
+        <Node id="resources/our-cakes.html" x="1150" y="300" zoom="true"/>
+        <Node id="shop.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="login_register.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="resources/product.html" x="150" y="750" zoom="true"/>
+        <Node id="resources/login-register.html" x="1650" y="150" zoom="true"/>
+        <Node id="resources/index.html" x="900" y="300" zoom="true"/>
+        <Node id="success_login.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="resources/contact.html" x="400" y="300" zoom="true"/>
+        <Node id="resources/cart.html" x="400" y="600" zoom="true"/>
+        <Node id="Template.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="cakes.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="resources/shop-a.html" x="400" y="150" zoom="true"/>
+        <Node id="resources/temp/a.html" x="150" y="900" zoom="true"/>
+        <Node id="resources/blog-comments.html" x="1150" y="150" zoom="true"/>
+        <Node id="test.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="resources/shop-b.html" x="900" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="resources/checkout.html" x="1400" y="150" zoom="true"/>
+        <Node id="resources/prices.html" x="900" y="450" zoom="true"/>
+        <Node id="success_register.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="resources/test.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="resources/about.html" x="400" y="450" zoom="true"/>
+        <Node id="cart.xhtml" x="650" y="300" zoom="true"/>
+    </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
